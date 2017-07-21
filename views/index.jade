@@ -1,5 +1,48 @@
 extends layout
-
+- var code = "<code>hello</code>";
+- var abc = "123"
+- var arra = ["1132132132","2sdfsad","3eeee"]
 block content
-  h1= title
-  p Welcome to #{title}
+  h1 Pug - node template engine
+    #container.col
+      if title
+        p You are amazing
+      else
+        p Get on it!
+      p.
+        Pug is a terse and simple
+        | templating language with a
+
+    div(data-name="myname",hello=title)
+        div !{code}
+        h1
+        p
+          a
+
+    div
+      //| strong focus on performance and powerful features
+      | this is a pug #[code code sequence].
+    div !{code}
+    div #{code}
+    div
+      li: a(href="#") Home
+      // 等同于
+      li
+        a(href="#") Home
+    button(onClick="alert('aaaaaaa')") tijiao
+    .glyphicon.glyphicon-email
+    |  3 days ago
+    // 表示图标后面直接添加日期
+
+    .glyphicon.glyphicon-email
+       ago
+    // 如果省略"|" jade会认为上面的email图标叫days
+    // 结果只会显示 图标+ ago
+
+    ul
+      li(role="presentation")
+        a(href="#") Home
+      li(role="presentation")
+        a(href="#"): |Maps
+
+
