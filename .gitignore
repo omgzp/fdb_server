@@ -1,0 +1,7 @@
+/.idea
+.idea/workspace.xml
+dist
+node_modules
+build/scripts/index.js
+build/Package_test/
+.vscode
