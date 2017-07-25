@@ -1,9 +1,6 @@
 /**
  * Created by Administrator on 2017/7/24 0024.
  */
-/**
- * Created by Administrator on 2017/7/24 0024.
- */
 //读取指定文件夹的文件
 var fs = require("fs");
 var fdbDatasources = require("./fdbDatasources");

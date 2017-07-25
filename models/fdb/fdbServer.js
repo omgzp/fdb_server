@@ -3,12 +3,12 @@
  */
 //发布服务
 var request = require("request");
-
-
-function addServer(dataName) {
+var fdbSet = require("../../public/javascripts/config.js");
+var fdbfc={}
+fdbfc.addServer =function (dataName) {
     var options = { method: 'PUT',
-        url: 'http://192.168.2.215:8040/rest/services/manageService/logicalDatasources/'+dataName,
-        qs: { pwd: '21232f297a57a5a743894a0e4a801fc3' },
+        url: 'http://'+fdbSet.fdbConfig.ip+':'+fdbSet.fdbConfig.port+'/rest/services/manageService/logicalDatasources/'+dataName,
+        qs: { pwd: '21232f297a57a5a743894a0e4a801fc3', all: '1'  },
         headers:
             { 'postman-token': 'bf500933-7f9a-1ccc-f298-606833a5e21d',
                 'cache-control': 'no-cache',
@@ -28,4 +28,21 @@ function addServer(dataName) {
         console.log(body);
     });
 }
-exports.addServer = addServer;
+fdbfc.getServer=function(callback){
+    console.log("getserver11111")
+    var options = { method: 'GET',
+        url: 'http://'+fdbSet.fdbConfig.ip+':'+fdbSet.fdbConfig.port+'/rest/services/manageService/logicalDatasources',
+        qs: { pwd: '21232f297a57a5a743894a0e4a801fc3' },
+        headers:
+            { 'postman-token': 'b8b36725-6750-18b1-8e95-1365a689bee1',
+                'cache-control': 'no-cache' } };
+
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+        var data =JSON.parse(body)
+
+        console.log(data.logicalDatasourceNames);
+        callback(data.logicalDatasourceNames);
+    });
+}
+exports.fdbfc = fdbfc;
