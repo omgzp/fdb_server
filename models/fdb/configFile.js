@@ -9,7 +9,7 @@ var fdbFeatureClass = require("./fdbFeatureClass");
 var fdbDataSet = require("./fdbDataSet");
 
 configFilefs.getDataSets=function(servers,callback){
-    var datas =[], tasks = [];
+    var datas =[], tasks = [],configDatas = [];
     //数据集的回调函数，使用async模块
     function getDatasetCallback(dataset,server,callback) {
         /*var item = {
@@ -22,7 +22,11 @@ configFilefs.getDataSets=function(servers,callback){
 
     //async的回调方法
     function asyncCall(err, results) {
-        callback(datas);
+        var data ={
+            fdbdata:datas,
+            configdata:configDatas
+        }
+        callback(data);
     }
     //async参数列表，为函数对象数组
     //获得数据集-------------------------------
@@ -46,6 +50,21 @@ configFilefs.getDataSets=function(servers,callback){
                                 featureClass:fcdata
                             }
                             fcDatas.push(item);
+                            for(let k =0;k < fcdata.length;k++){
+                                var configdata = {
+                                    name: fcdata[k],
+                                    aliceName: fcdata[k],
+                                    dataSet: data[j],
+                                    featureClassName: fcdata[k],
+                                    service: servers[i],
+                                    geoName: "Geometry",
+                                    visible: true,
+                                    password: "",
+                                    ConnectionType: "gviConnectionCms7Http",
+                                }
+                                configDatas.push(configdata);
+                            }
+
                             fcCallback(null,servers[i]+"-"+data[j])
                         })
                     }
