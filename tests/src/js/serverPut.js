@@ -4,9 +4,9 @@
 //发布服务
 var request = require("request");
 var fdbSet = require("../../../public/javascripts/config.js");
-
+var dataSet = encodeURI('http://'+fdbSet.fdbConfig.ip+':'+fdbSet.fdbConfig.port+'/rest/services/manageService/logicalDatasources/test1');
 var options = { method: 'PUT',
-    url: 'http://'+fdbSet.fdbConfig.ip+':'+fdbSet.fdbConfig.port+'/rest/services/manageService/logicalDatasources/test1',
+    url: dataSet,//'http://'+fdbSet.fdbConfig.ip+':'+fdbSet.fdbConfig.port+'/rest/services/manageService/logicalDatasources/test1',
     qs: { pwd: '21232f297a57a5a743894a0e4a801fc3' , all: '1' },
     headers:
         { 'postman-token': 'bf500933-7f9a-1ccc-f298-606833a5e21d',

@@ -7,6 +7,7 @@
 var request = require("request");
 var fdbServer = require("./fdbServer");
 var fdbSet = require("../../public/javascripts/config");
+var fdbDatasourcesFuns = {};
 /*var options = { method: 'PUT',
     url: 'http://192.168.2.215:8040/rest/services/manageService/physicalDatasources/test4',
     qs: { pwd: '21232f297a57a5a743894a0e4a801fc3' },
@@ -28,11 +29,12 @@ request(options, function (error, response, body) {
 
     console.log(body);
 });*/
-function addDatasources(params) {
+fdbDatasourcesFuns.addDatasources = function (params) {
     for(var i = 0;i<params.length;i++){
         console.log(params[i].name);
+        var dataUrl = encodeURI('http://'+fdbSet.fdbConfig.ip+':'+fdbSet.fdbConfig.port+'/rest/services/manageService/physicalDatasources/'+params[i].name);
         var options = { method: 'PUT',
-            url: 'http://'+fdbSet.fdbConfig.ip+':'+fdbSet.fdbConfig.port+'/rest/services/manageService/physicalDatasources/'+params[i].name,
+            url: dataUrl,//'http://'+fdbSet.fdbConfig.ip+':'+fdbSet.fdbConfig.port+'/rest/services/manageService/physicalDatasources/'+params[i].name,
             qs: { pwd: '21232f297a57a5a743894a0e4a801fc3' },
             headers:
                 { 'postman-token': '7edb7e62-97c1-88eb-e05d-e0d83e02e2a3',
@@ -49,9 +51,9 @@ function addDatasources(params) {
             /*if(body.addResult.success){
                 fdbServer.fdbfc.addServer(body.addResult.name)
             }*/
-            fdbServer.fdbfc.addServer(body.addResult.name)
+            fdbServer.fdbServerFuns.addServer(body.addResult.name)
         });
     }
 }
 
-exports.addDatasources = addDatasources;
+exports.fdbDatasourcesFuns = fdbDatasourcesFuns;

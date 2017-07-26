@@ -4,8 +4,9 @@
 var request = require("request");
 var deletefdb = require("./datasourcesDelete")
 var fdbSet = require("../../../public/javascripts/config.js");
+var dataUrl = encodeURI('http://'+fdbSet.fdbConfig.ip+':'+fdbSet.fdbConfig.port+'/rest/services/manageService/physicalDatasources');
 var options = { method: 'GET',
-    url: 'http://'+fdbSet.fdbConfig.ip+':'+fdbSet.fdbConfig.port+'/rest/services/manageService/physicalDatasources',
+    url: dataUrl,//'http://'+fdbSet.fdbConfig.ip+':'+fdbSet.fdbConfig.port+'/rest/services/manageService/physicalDatasources',
     qs: { pwd: '21232f297a57a5a743894a0e4a801fc3' },
     headers:
         { 'postman-token': '013e94ef-3821-0988-4633-2cde797157f3',

@@ -3,8 +3,9 @@
 //fdb数据源发布
 var request = require("request");
 var fdbSet = require("../../../public/javascripts/config.js");
+var dataUrl = encodeURI('http://'+fdbSet.fdbConfig.ip+':'+fdbSet.fdbConfig.port+'/rest/services/manageService/physicalDatasources/test4');
 var options = { method: 'PUT',
-    url: 'http://'+fdbSet.fdbConfig.ip+':'+fdbSet.fdbConfig.port+'/rest/services/manageService/physicalDatasources/test4',
+    url: dataUrl,//'http://'+fdbSet.fdbConfig.ip+':'+fdbSet.fdbConfig.port+'/rest/services/manageService/physicalDatasources/test4',
     qs: { pwd: '21232f297a57a5a743894a0e4a801fc3' },
     headers:
         { 'postman-token': '7edb7e62-97c1-88eb-e05d-e0d83e02e2a3',

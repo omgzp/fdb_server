@@ -22,8 +22,9 @@ exports.deleteServers = deleteServers;
 
 function deleteServers(servers) {
     for(var i = 0;i<servers.length;i++){
+        var dataUrl = encodeURI('http://'+fdbSet.fdbConfig.ip+':'+fdbSet.fdbConfig.port+'/rest/services/manageService/logicalDatasources/'+servers[i])
         var options = { method: 'DELETE',
-            url: 'http://'+fdbSet.fdbConfig.ip+':'+fdbSet.fdbConfig.port+'/rest/services/manageService/logicalDatasources/'+servers[i],
+            url: dataUrl,//'http://'+fdbSet.fdbConfig.ip+':'+fdbSet.fdbConfig.port+'/rest/services/manageService/logicalDatasources/'+servers[i],
             qs: { pwd: '21232f297a57a5a743894a0e4a801fc3' },
             headers:
                 { 'postman-token': '317a2248-ab4b-28f8-41c1-99b160a0f48d',

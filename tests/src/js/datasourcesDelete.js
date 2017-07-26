@@ -20,8 +20,9 @@ exports.deleteDatasources = deleteDatasources;
 
 function deleteDatasources(datasources) {
     for(var i = 0;i<datasources.length;i++){
+        var dataUrl = encodeURI('http://'+fdbSet.fdbConfig.ip+':'+fdbSet.fdbConfig.port+'/rest/services/manageService/physicalDatasources/'+datasources[i]);
         var options = { method: 'DELETE',
-            url: 'http://'+fdbSet.fdbConfig.ip+':'+fdbSet.fdbConfig.port+'/rest/services/manageService/physicalDatasources/'+datasources[i],
+            url: dataUrl,//'http://'+fdbSet.fdbConfig.ip+':'+fdbSet.fdbConfig.port+'/rest/services/manageService/physicalDatasources/'+datasources[i],
             qs: { pwd: '21232f297a57a5a743894a0e4a801fc3' },
             headers:
                 { 'postman-token': 'a522009b-363b-8e2d-4c21-a4a502eaabdf',

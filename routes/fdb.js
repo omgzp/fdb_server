@@ -19,7 +19,7 @@ router.get('/addDataSources', function(req, res, next) {
 router.get('/getFdbList', function(req, res, next) {
     console.log("get");
 
-    fdbServer.fdbfc.getServer(getData);
+    fdbServer.fdbServerFuns.getServer(getData);
     function getData(result) {
         res.send(result)
     }

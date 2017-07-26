@@ -4,10 +4,11 @@
 //发布服务
 var request = require("request");
 var fdbSet = require("../../public/javascripts/config.js");
-var fdbfc={}
-fdbfc.addServer =function (dataName) {
+var fdbServerFuns={}
+fdbServerFuns.addServer =function (dataName) {
+    var dataUrl = encodeURI('http://'+fdbSet.fdbConfig.ip+':'+fdbSet.fdbConfig.port+'/rest/services/manageService/logicalDatasources/'+dataName);
     var options = { method: 'PUT',
-        url: 'http://'+fdbSet.fdbConfig.ip+':'+fdbSet.fdbConfig.port+'/rest/services/manageService/logicalDatasources/'+dataName,
+        url: dataUrl,//'http://'+fdbSet.fdbConfig.ip+':'+fdbSet.fdbConfig.port+'/rest/services/manageService/logicalDatasources/'+dataName,
         qs: { pwd: '21232f297a57a5a743894a0e4a801fc3', all: '1'  },
         headers:
             { 'postman-token': 'bf500933-7f9a-1ccc-f298-606833a5e21d',
@@ -28,10 +29,10 @@ fdbfc.addServer =function (dataName) {
         console.log(body);
     });
 }
-fdbfc.getServer=function(callback){
-    console.log("getserver11111")
+fdbServerFuns.getServer=function(callback){
+    var dataUrl = encodeURI('http://'+fdbSet.fdbConfig.ip+':'+fdbSet.fdbConfig.port+'/rest/services/manageService/logicalDatasources');
     var options = { method: 'GET',
-        url: 'http://'+fdbSet.fdbConfig.ip+':'+fdbSet.fdbConfig.port+'/rest/services/manageService/logicalDatasources',
+        url: dataUrl,//'http://'+fdbSet.fdbConfig.ip+':'+fdbSet.fdbConfig.port+'/rest/services/manageService/logicalDatasources',
         qs: { pwd: '21232f297a57a5a743894a0e4a801fc3' },
         headers:
             { 'postman-token': 'b8b36725-6750-18b1-8e95-1365a689bee1',
@@ -45,4 +46,4 @@ fdbfc.getServer=function(callback){
         callback(data.logicalDatasourceNames);
     });
 }
-exports.fdbfc = fdbfc;
+exports.fdbServerFuns = fdbServerFuns;

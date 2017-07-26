@@ -27,7 +27,7 @@ function getfiles(projectName,dir,callback) {
 
             }
         });
-        fdbDatasources.addDatasources(fdbParams);
+        fdbDatasources.fdbDatasourcesFuns.addDatasources(fdbParams);
         //console.log( fdbParams);
         callback(fdbParams);
         fdbParams=[];
