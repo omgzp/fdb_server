@@ -6,7 +6,7 @@ var request = require("request");
 var fdbSet = require("../../public/javascripts/config.js");
 
 var fdbFeatureClassFuns = {};
-
+//获得地图图层
 fdbFeatureClassFuns.getFeatureClass= function (server,dataset,callback) {
     var dataUrl = encodeURI('http://'+fdbSet.fdbConfig.ip+':'+fdbSet.fdbConfig.port+'/rest/services/manageService/logicalDatasources/'+server+'/datasets/'+dataset+'/featureClasses');
     var options = { method: 'GET',
@@ -18,11 +18,11 @@ fdbFeatureClassFuns.getFeatureClass= function (server,dataset,callback) {
                 'content-type': 'application/json' } };
     request(options, function (error, response, body) {
         if (error) throw new Error(error);
-        console.log(options.url)
+        //console.log(options.url)
 
         var data =JSON.parse(body)
         console.log(data.logicalFeatureClassNames)
-        return data;
+        callback(data.logicalFeatureClassNames);
     });
 }
 

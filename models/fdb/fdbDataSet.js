@@ -6,7 +6,8 @@ var request = require("request");
 var fdbSet = require("../../public/javascripts/config.js");
 
 var fdbDataSetFuns = {};
-fdbDataSetFuns.getDataSet = function(server,getDatasetCallback,callback) {
+//获得数据集
+fdbDataSetFuns.getDataSet = function(server,callback) {
     console.log(server);
     var dataUrl = encodeURI('http://'+fdbSet.fdbConfig.ip+':'+fdbSet.fdbConfig.port+'/rest/services/manageService/logicalDatasources/'+server+'/datasets');
     var options = { method: 'GET',
@@ -18,12 +19,8 @@ fdbDataSetFuns.getDataSet = function(server,getDatasetCallback,callback) {
                 'content-type': 'application/json' } };
     request(options, function (error, response, body) {
         if (error) throw new Error(error);
-        console.log(3);
-        console.log(options.url);
         var data =JSON.parse(body);
-        console.log(data);
-        getFeatureClass(server,data.logicalDatasetNames[0]);
-        getDatasetCallback(data.logicalDatasetNames,server,callback);
+        callback(data.logicalDatasetNames);
 
     });
 }
