@@ -12,11 +12,11 @@ configFilefs.getDataSets=function(servers,callback){
     var datas =[], tasks = [],configDatas = [];
     //数据集的回调函数，使用async模块
     function getDatasetCallback(dataset,server,callback) {
-        /*var item = {
+        var item = {
             serverName:server,
             datasets:dataset
-        }*/
-        datas.push(dataset);
+        }
+        datas.push(item);
         callback(null,server);
     }
 
@@ -45,7 +45,7 @@ configFilefs.getDataSets=function(servers,callback){
                         });
                         fcPromise.then(function(fcdata){
                             var item = {
-                                serverName:servers[i],
+                                //serverName:servers[i],
                                 datasetName:data[j],
                                 featureClass:fcdata
                             }
