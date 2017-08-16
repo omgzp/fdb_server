@@ -42,7 +42,6 @@ fdbServerFuns.getServer=function(callback){
         if (error) throw new Error(error);
         var data =JSON.parse(body)
 
-        console.log(data.logicalDatasourceNames);
         callback(data.logicalDatasourceNames);
     });
 }

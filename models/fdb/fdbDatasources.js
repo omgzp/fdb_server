@@ -47,7 +47,6 @@ fdbDatasourcesFuns.addDatasources = function (params) {
         request(options, function (error, response, body) {
             if (error) throw new Error(error);
 
-            console.log(typeof body);
             /*if(body.addResult.success){
                 fdbServer.fdbfc.addServer(body.addResult.name)
             }*/

@@ -18,10 +18,8 @@ fdbFeatureClassFuns.getFeatureClass= function (server,dataset,callback) {
                 'content-type': 'application/json' } };
     request(options, function (error, response, body) {
         if (error) throw new Error(error);
-        //console.log(options.url)
 
         var data =JSON.parse(body)
-        console.log(data.logicalFeatureClassNames)
         callback(data.logicalFeatureClassNames);
     });
 }
